@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <title>E-Commerce Site</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="scripts/functions.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <style>
+        body {
+            padding-top: 70px;
+            background-size: cover;
+            background-color: rgb(155, 220, 198);
+        }
+        #div1 {
+        width: 800px;
+        height: 400px;
+        padding: 10px;
+        border: 1px solid #aaaaaa;
+        }
+        .navbar-nav li a:hover {
+        background-color: #72d681;
+        }
+        .navbar-nav li a:hover {
+        color: #040404;
+        }
+        .navbar-nav .active > a,
+        .navbar-nav .active > a:hover,
+        .navbar-nav .active > a:focus {
+        background-color: #007bff;
+        color: #000000;
+        }
+        .navbar {
+        border-bottom: 2px solid #e70909;
+        font-weight: 600;
+        }
+        .navbar-toggler-icon {
+        background-color: #000;
+        }
+
+        .navbar-brand {
+        color: #000;
+        font-weight: bold;
+        }
+
+        .navbar-nav li a {
+        font-size: 16px;
+        font-weight: 700;
+        }
+
+        nav ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+        }
+
+        nav li {
+            margin: 0 10px;
+            position: relative;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #56dc3b;
+        }
+
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #a19d9d;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li:hover > ul {
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav ul ul li {
+            width: 200px;
+            margin: 0;
+        }
+
+        nav ul ul li a {
+            color: #fff;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul ul li a:hover {
+            color: #56dc3b;
+        }
+        .container {
+        width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+        padding: 20px;
+        flex: 1;
+    }
+    .card {
+        background-color: #fff;
+    }
+
+    .card .content {
+        padding: 10px;
+    }
+
+    .card .content h3 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #333;
+        margin: 5px 0;
+    }
+
+    .card .content .price_rating {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card .content .price_rating h2 {
+        font-size: 20px;
+        color: #ff2020;
+        font-weight: 500;
+    }
+
+    .card .imgBx {
+        position: relative;
+        height: 310px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .card .imgBx img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s ease-in-out;
+        transform-origin: right;
+    }
+
+    .card:hover .imgBx img {
+        transform: scale(1.5);
+    }
+
+    .container .card .content .price_rating .fa {
+        color: #ffd513;
+        cursor: pointer;
+    }
+
+    .card:hover .action li {
+        transform: translateX(0);
+    }
+
+    .action {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .action li {
+        position: relative;
+        list-style: none;
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4px;
+        cursor: pointer;
+        transition: transform 0.5s;
+        transform: translateX(60px);
+    }
+
+    .action li:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    .action li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .action li:hover {
+        background-color: #ff2020;
+        color: #fff;
+    }
+
+    .action li:hover span {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+
+    .action li span {
+        position: absolute;
+        right: 50px;
+        top: 50%;
+        transform: translateY(-50%) translateX(-20%);
+        white-space: nowrap;
+        background-color: #fff;
+        padding: 4px 6px;
+        color: #333;
+        font-weight: 500;
+        font-size: 12px;
+        border-radius: 4px;
+        pointer-events: none;
+        transition: 0.5s;
+        opacity: 0;
+    }
+
+    .action li span::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -4px;
+        width: 8px;
+        height: 8px;
+        background-color: #fff;
+        transform: translate(0, -50%) rotate(45deg);
+    }
+    </style>
+    <script>
+        $(() => {
+            createTables();
+            if (checkLogin()) {
+                $('#login-item').hide();
+                $('#register-item').hide();
+                $("#count").html(getCartItemCount());
+            }
+            else {
+                $('#login-item').show();
+                $('#register-item').show();
+            }
+        });
+        window.addEventListener('load', function() {
+        alert('register/sign in to add product on the cart.');
+        });
+        function allowDrop(ev) {
+                ev.preventDefault();
+            }
+
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+            }
+
+            function drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+                ev.target.appendChild(document.getElementById(data));
+            }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Masculine Attire</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="product.html">Your Product</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="cart.html">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  <span id="count">0</span> items
+                </a>
+              </li>
+              <li>
+                <a href="#">Contact Us</a>
+                <ul>
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Phone</a></li>
+                    <li><a href="#">Social Media</a></li>
+                </ul>
+            </li>
+            <li><a href="#">About Us</a></li>
+            <li>
+                <a href="#">Account</a>
+                <ul>
+                    <li class="nav-item" id="login-item">
+                      <a class="nav-link" href="login.html">Sign in</a>
+                    </li>
+                    <li class="nav-item" id="register-item">
+                      <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                </ul>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="admin.html" id="">Add products</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+        <div class="col-lg-6">
+            <h1 style="color: rgb(11, 56, 182)">Masculine Attire</h1>
+        </div>
+    </div>
+    <div class="container">
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/1.jpg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Panjabi</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$23.45</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <!-- <i class="fa fa-star" aria-hidden="true" class="empty-star"></i>
+                      <i class="fa fa-star" aria-hidden="true" class="empty-star"></i> -->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/2.jpg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Analog Black men Watch</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$8.00</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="false"></i>
+                      <i class="fa fa-star" aria-hidden="false"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/3.jpeg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Men's Regular Fit Shirts</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$9.75</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/4.jpg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Gabardin Pant</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$8.45</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="false"></i>
+                      <i class="fa fa-star" aria-hidden="false"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/5.jpg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Fit Jeans</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$11.00</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="false"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/6.jpg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Round Neck Printed Top</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$3.55</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/7.jpg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Mens Running Shoe</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$10.45</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="false"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="imgBx">
+              <img src="Images/8.jpg" alt="">
+              <ul class="action">
+                  <li>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      <span>Add to Wishlist</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>Add to Cart</span>
+                  </li>
+                  <li>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span>View Detail</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="content">
+              <div class="produceName">
+                  <h3>Men Pullover Sweater</h3>
+              </div>
+              <div class="price_rating">
+                  <h2>$5.85</h2>
+                  <div class="rating">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="Images/logo.png" draggable="true" ondragstart="drag(event)" width="800" height="400">
+    <footer class="container">
+        <p>&copy; ABDULLAH || Round 53</p>
+    </footer>
+</body>
+</html>
