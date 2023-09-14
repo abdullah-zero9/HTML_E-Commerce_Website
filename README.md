@@ -30,8 +30,7 @@ To use the HTML E-Commerce Website:
 
 1. **Clone the Repository**: Clone this repository to your local machine using Git.
    
-   git clone https://github.com/your-username/HTML_E-Commerce_Website.git
-   ```
+**   git clone https://github.com/abdullah-zero9/HTML_E-Commerce_Website.git**__
 
 3. **Open the Website**: Navigate to the project directory and open the `index.html` file in your preferred web browser.
 
